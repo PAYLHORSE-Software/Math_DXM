@@ -18,9 +18,23 @@ XMVECTOR :: struct {
     // DXM specific:
 #place x;
     u: [4] u32 = ---;
+#place x;
+    s: [4] s32 = ---;
+#place x;
+    u_16: [8] u16 = ---;
+#place x;
+    s_16: [8] s16 = ---;
+#place x;
+    u_8: [16] u8 = ---;
+#place x;
+    u_64: [2] u64 = ---;
+#place x;
+    s_64: [2] s64 = ---;
+#place x;
+    d: [2] float64 = ---;
 }
 
-// XMVECTORU32 etc. redundant thanks to #place :)
+// XMVECTORU32, XMVECTORI32 etc. redundant thanks to #place :)
 
 // CONSTANTS --------------------------------------------------
 
