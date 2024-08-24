@@ -44,22 +44,25 @@ XMConvertToRadians :: (fDegrees: float) -> float {
 // XMScalarSinCos :: (pSin: *float, pCos: *float, Value: float) {
 //     assert(pSin);
 //     assert(pCos);
-
-//     // ...
 // }
 
-XMVectorSelect :: (V1: XMVECTOR, V2: XMVECTOR, Control: XMVECTOR) -> XMVECTOR {
+XMVector3Dot :: (V1: Vector3, V2: Vector3) -> XMVECTOR {
+    dp := dot(V1, V2);
+    return xx make_vector4(dp);
+}
+
+XMVectorSelect :: (
+    V1: XMVECTOR,
+    V2: XMVECTOR,
+    Control: XMVECTOR
+) -> XMVECTOR {
+    
     Result: XMVECTOR;
     for 0..3 {
 	Result.u[it] = (V1.u[it] & ~Control.u[it]) | (V2.u[it] & Control.u[it]);
     }
     return Result;
 }
-
-XMVector3Dot :: (V1: Vector3, V2: Vector3) -> XMVECTOR {
-    dp := dot(V1, V2);
-    return xx make_vector4(dp);
-} 
 
 XMMatrixLookAtLH :: (
     EyePosition: XMVECTOR,
@@ -111,7 +114,7 @@ XMMatrixPerspectiveFovLH :: (
     FarZ: float
 ) -> XMMATRIX {
 
-    // TODO
+    // TODO SIMD
     cpu_info := get_cpu_info();
     if check_feature(cpu_info.feature_leaves, x86_Feature_Flag.AVX2) {
         #asm AVX2 {}
